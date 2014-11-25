@@ -22,3 +22,11 @@ add_theme_support( 'genesis-responsive-viewport' );
 
 // support 3 column footer widgets
 add_theme_support( 'genesis-footer-widgets', 3 );
+
+// customize copyright text
+add_filter( 'genesis_footer_creds_text', 'sp_footer_creds_text' );
+function sp_footer_creds_text() {
+  echo '<div class="name">Sleepy-Me Hotel ' . date('Y') . '</div>';
+  echo '<div class="address">237 Redrum Road, Jacktown, CO &middot; Tel: 1 (555) 555-5555 &middot; Fax: 1 (555) 555-5555</div>';
+  echo '<div class="email"><a href="mailto:test@example.com">reservation@sleepymehotel.com</a></div>';
+}
