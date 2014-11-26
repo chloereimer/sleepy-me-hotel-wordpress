@@ -1,0 +1,65 @@
+.site-inner
+  
+  +span-columns(12)
+
+  padding: 1.5rem 0
+
+  .type-page .entry-title
+
+    display: none
+
+.content-sidebar-wrap
+
+  .content
+
+    +span-columns(8)
+
+  .sidebar
+
+    +span-columns(4)
+    padding: 1rem
+    background: lighten( $sleepy_me_black , 74% )
+
+    .widget
+      padding-bottom: 1rem
+      border-bottom: 1px dotted lighten( $sleepy_me_black , 60% )
+      margin: 1rem 0
+
+    .logo
+      text-transform: uppercase
+      text-align: center
+      font-size: 2rem
+      font-weight: 300
+
+    .widget_recent_entries
+
+      .widget-title
+        font-weight: bold
+        margin: 0.67rem 0
+
+      ul
+        margin: 0
+        padding: 0
+        list-style: none
+
+        li:not(:last-of-type)
+          margin-bottom: 1rem
+
+    .admin-widget h1
+      font-size: inherit
+      font-weight: bold
+
+    .search-form
+      +outer-container()
+
+      input[type=search]
+        +span-columns(8)
+
+      input[type=submit]
+        +span-columns(4)
+
+  .entry-content
+
+    h1:first-child
+
+      margin-top: 0

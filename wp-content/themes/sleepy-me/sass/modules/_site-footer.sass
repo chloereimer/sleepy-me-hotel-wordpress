@@ -1,0 +1,23 @@
+.site-footer
+
+  +span-columns(12)
+  +pad( 1rem 0 )
+
+  border-top: 1px solid $sleepy_me_black
+  font-weight: 300
+
+  .name,
+  .address,
+    margin-bottom: 0.5rem
+
+  .name
+    font-weight: 700
+
+  .email
+    a
+      color: inherit
+      text-decoration: inherit
+      &:hover,
+      &:focus
+        color: $sleepy_me_link_color
+  

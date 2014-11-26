@@ -30,3 +30,22 @@ function sp_footer_creds_text() {
   echo '<div class="address">237 Redrum Road, Jacktown, CO &middot; Tel: 1 (555) 555-5555 &middot; Fax: 1 (555) 555-5555</div>';
   echo '<div class="email"><a href="mailto:test@example.com">reservation@sleepymehotel.com</a></div>';
 }
+
+// remove edit link from pages
+add_filter ( 'genesis_edit_post_link' , '__return_false' );
+
+add_action( 'genesis_after_sidebar_widget_area', 'sleepy_me_admin_login' );
+function sleepy_me_admin_login(){
+  echo '<div class="admin-widget">';
+  echo '<h1>Admin</h1>';
+  if ( is_user_logged_in() ){
+    global $current_user;
+    get_currentuserinfo();
+    echo 'Logged in as ' . $current_user->user_login;
+    echo ' &middot; ';
+    echo '<a href="' . wp_logout_url( home_url() ) . '">Logout</a>';
+  } else {
+    echo '<a href="' . admin_url() . '">Login</a>';
+  }
+  echo '</div>';
+}
