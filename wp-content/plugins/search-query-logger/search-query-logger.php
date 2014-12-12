@@ -35,7 +35,7 @@ function logger_install() {
   require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
 
   dbDelta( $sql );
-  
+
 }
 
 // deactivation procedure
@@ -73,3 +73,39 @@ function logger_log_query($query){
   }
 
 }
+
+function logger_shortcode( $attributes ){
+
+  global $wpdb;
+  $table_name = $wpdb->prefix . "search_query_logs"; 
+
+  $options = get_option( 'logger_settings' );
+
+  if( !empty( $attributes['count'] )){
+    $limit = $attributes['count'];
+  } else {
+    $limit = $options['logger_number_terms_to_display'];
+  }
+
+  $searches = $wpdb->get_results( 
+    "
+      SELECT search_term, COUNT(search_term) AS search_count FROM $table_name GROUP BY search_term ORDER BY search_count DESC LIMIT $limit
+    "
+  );
+
+  $html = '<ul>';
+
+  foreach ($searches as $search) {
+    $html .= '<li>';
+    $html .= $search->search_term . " ($search->search_count)";
+    $html .= '</li>';
+  }
+
+  $html .= '</ul>';
+
+  return $html;
+  
+}
+add_shortcode( 'searchQuery', 'logger_shortcode' );
+
+require_once untrailingslashit( dirname( __FILE__ ) ) . '/options.php';
